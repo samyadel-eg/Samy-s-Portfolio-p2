@@ -1,1 +1,1769 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeakFlow - AI-Powered Marketing Optimization Platform</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#57b5e7',secondary:'#8dd3c7'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+.particles-container {
+pointer-events: none;
+z-index: 1;
+}
+.particle {
+position: absolute;
+width: 12px;
+height: 12px;
+background: rgba(87, 181, 231, 0.4);
+border-radius: 50%;
+animation: float 8s infinite linear;
+box-shadow: 0 0 15px rgba(87, 181, 231, 0.4);
+}
+.particle:nth-child(2n) {
+background: rgba(141, 211, 199, 0.4);
+box-shadow: 0 0 15px rgba(141, 211, 199, 0.4);
+}
+.particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; top: 40%; animation-delay: -1s; }
+.particle:nth-child(3) { left: 30%; top: 60%; animation-delay: -2s; }
+.particle:nth-child(4) { left: 40%; top: 80%; animation-delay: -3s; }
+.particle:nth-child(5) { left: 50%; top: 20%; animation-delay: -4s; }
+.particle:nth-child(6) { left: 60%; top: 40%; animation-delay: -5s; }
+.particle:nth-child(7) { left: 70%; top: 60%; animation-delay: -6s; }
+.particle:nth-child(8) { left: 80%; top: 80%; animation-delay: -7s; }
+.particle:nth-child(9) { left: 90%; top: 20%; animation-delay: -8s; }
+.particle:nth-child(10) { left: 15%; top: 30%; animation-delay: -9s; }
+.particle:nth-child(11) { left: 25%; top: 50%; animation-delay: -10s; }
+.particle:nth-child(12) { left: 35%; top: 70%; animation-delay: -11s; }
+.particle:nth-child(13) { left: 45%; top: 90%; animation-delay: -12s; }
+.particle:nth-child(14) { left: 55%; top: 30%; animation-delay: -13s; }
+.particle:nth-child(15) { left: 65%; top: 50%; animation-delay: -14s; }
+@keyframes float {
+0% {
+transform: translateY(0) rotate(0deg);
+opacity: 0;
+}
+20% {
+opacity: 0.8;
+}
+80% {
+opacity: 0.8;
+}
+100% {
+transform: translateY(-100vh) rotate(360deg);
+opacity: 0;
+}
+}
+.gradient-text {
+background: linear-gradient(90deg, #57b5e7, #8dd3c7);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+.animated-hero-bg {
+position: relative;
+background: rgba(15, 23, 42, 0.95);
+overflow: hidden;
+}
+.bg-pattern {
+position: absolute;
+inset: 0;
+opacity: 0.15;
+background-image: radial-gradient(circle at 1px 1px, rgba(87, 181, 231, 0.5) 1px, transparent 0);
+background-size: 24px 24px;
+mix-blend-mode: screen;
+pointer-events: none;
+z-index: 1;
+}
+.bg-pattern-lines {
+position: absolute;
+inset: 0;
+opacity: 0.1;
+background-image: repeating-linear-gradient(45deg,
+rgba(141, 211, 199, 0.3) 0px,
+rgba(141, 211, 199, 0.3) 1px,
+transparent 1px,
+transparent 24px
+);
+mix-blend-mode: screen;
+pointer-events: none;
+z-index: 1;
+}
+.bg-gradient {
+position: absolute;
+inset: 0;
+background: linear-gradient(120deg,
+rgba(15, 23, 42, 0.95) 0%,
+rgba(87, 181, 231, 0.3) 25%,
+rgba(141, 211, 199, 0.3) 50%,
+rgba(87, 181, 231, 0.3) 75%,
+rgba(15, 23, 42, 0.95) 100%
+);
+background-size: 300% 300%;
+animation: gradientFlow 15s ease infinite;
+z-index: 0;
+}
+@keyframes gradientFlow {
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+}
+.card-hover:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(87, 181, 231, 0.25);
+}
+.pricing-card {
+background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+backdrop-filter: blur(10px);
+}
+.pricing-card.highlight {
+background: linear-gradient(145deg, rgba(87, 181, 231, 0.2), rgba(15, 23, 42, 0.8));
+box-shadow: 0 0 20px rgba(87, 181, 231, 0.3);
+transform: scale(1.03);
+}
+.accordion-content {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease-out;
+}
+.accordion-content.active {
+max-height: 200px;
+}
+input:focus, button:focus {
+outline: none;
+}
+.carousel-container {
+overflow-x: auto;
+scrollbar-width: none;
+}
+.carousel-container::-webkit-scrollbar {
+display: none;
+}
+.before-card {
+background: linear-gradient(145deg, rgba(87, 181, 231, 0.2), rgba(15, 23, 42, 0.8));
+}
+.after-card {
+background: linear-gradient(145deg, rgba(141, 211, 199, 0.2), rgba(15, 23, 42, 0.8));
+}
+</style>
+</head>
+<body class="bg-gray-900 text-white">
+<!-- Navigation -->
+<nav class="w-full bg-gray-900/90 backdrop-blur-md fixed top-0 z-50 border-b border-gray-800">
+<div class="container mx-auto px-6 py-4 flex justify-between items-center">
+<a href="#" class="text-2xl font-['Pacifico'] text-white">PeakFlow</a>
+<div class="hidden md:flex space-x-8">
+<a href="#features" class="text-gray-300 hover:text-primary transition relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Features</a>
+<a href="#how-it-works" class="text-gray-300 hover:text-primary transition relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full">How It Works</a>
+<a href="#testimonials" class="text-gray-300 hover:text-primary transition relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Testimonials</a>
+<a href="#pricing" class="text-gray-300 hover:text-primary transition relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Pricing</a>
+<a href="#faq" class="text-gray-300 hover:text-primary transition relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full">FAQ</a>
+</div>
+<button class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 transition whitespace-nowrap">Get Started</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-primary/20 to-secondary/20"></div>
+<div class="absolute inset-0">
+<div class="particles-container absolute inset-0">
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+</div>
+</div>
+<div class="container mx-auto px-6 py-20 w-full relative z-10">
+<div class="max-w-4xl mx-auto text-center">
+<h1 class="text-6xl font-extrabold mb-6 font-sans tracking-tight">
+The Smart <span class="relative inline-block">
+Platform
+<svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
+<path d="M 0,10 C 50,25 150,-5 200,10" stroke="url(#gradient)" stroke-width="4" fill="none"/>
+<defs>
+<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color: #57b5e7"/>
+<stop offset="100%" style="stop-color: #8dd3c7"/>
+</linearGradient>
+</defs>
+</svg>
+</span> for Modern<br>Marketing Teams</h1>
+<p class="text-gray-300 text-xl mb-10 max-w-2xl mx-auto">PeakFlow is an AI-powered marketing optimization platform that helps teams collaborate, analyze, and improve their campaigns in real-time. Streamline your workflow and make data-driven decisions with our intuitive software.</p>
+<div class="flex flex-wrap justify-center gap-6 mb-16">
+<button class="bg-primary text-white px-8 py-4 !rounded-button hover:bg-opacity-90 transition whitespace-nowrap text-lg font-medium flex items-center gap-2">
+Try it now
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</button>
+<button class="bg-white/10 text-white px-8 py-4 !rounded-button hover:bg-white/20 transition whitespace-nowrap text-lg font-medium backdrop-blur-sm flex items-center gap-2">
+Book a demo
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-calendar-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="max-w-6xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+<div class="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:transform hover:-translate-y-2 transition-all duration-300 group border border-white/10">
+<div class="aspect-[4/3] rounded-lg overflow-hidden mb-4 relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%2520social%2520media%2520advertisement%2520for%2520premium%2520brand%2C%2520elegant%2520lifestyle%2520product%2520photography%2C%2520minimalist%2520composition%2C%2520professional%2520lighting%2C%2520dark%2520moody%2520atmosphere&width=400&height=300&seq=1&orientation=landscape" alt="Social Media Ads" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-medium text-lg mb-2">Social Media Ads</h3>
+<p class="text-gray-400 text-sm">Engage your audience effectively</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:transform hover:-translate-y-2 transition-all duration-300 group border border-white/10">
+<div class="aspect-[4/3] rounded-lg overflow-hidden mb-4 relative">
+<img src="https://readdy.ai/api/search-image?query=premium%2520search%2520engine%2520marketing%2520advertisement%2C%2520modern%2520tech%2520product%2520showcase%2C%2520professional%2520commercial%2520photography%2C%2520dark%2520elegant%2520background&width=400&height=300&seq=2&orientation=landscape" alt="Search Ads" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-medium text-lg mb-2">Search Ads</h3>
+<p class="text-gray-400 text-sm">Reach ready-to-buy customers</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:transform hover:-translate-y-2 transition-all duration-300 group border border-white/10">
+<div class="aspect-[4/3] rounded-lg overflow-hidden mb-4 relative">
+<img src="https://readdy.ai/api/search-image?query=high-end%2520display%2520advertising%2520campaign%2C%2520luxury%2520brand%2520showcase%2C%2520professional%2520product%2520photography%2C%2520dark%2520sophisticated%2520atmosphere&width=400&height=300&seq=3&orientation=landscape" alt="Display Ads" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-medium text-lg mb-2">Display Ads</h3>
+<p class="text-gray-400 text-sm">Build brand awareness</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:transform hover:-translate-y-2 transition-all duration-300 group border border-white/10">
+<div class="aspect-[4/3] rounded-lg overflow-hidden mb-4 relative">
+<img src="https://readdy.ai/api/search-image?query=premium%2520video%2520advertising%2520campaign%2C%2520cinematic%2520product%2520showcase%2C%2520professional%2520commercial%2520videography%2C%2520dark%2520dramatic%2520setting&width=400&height=300&seq=4&orientation=landscape" alt="Video Ads" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-medium text-lg mb-2">Video Ads</h3>
+<p class="text-gray-400 text-sm">Tell your brand story</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:transform hover:-translate-y-2 transition-all duration-300 group border border-white/10">
+<div class="aspect-[4/3] rounded-lg overflow-hidden mb-4 relative">
+<img src="https://readdy.ai/api/search-image?query=premium%2520email%2520marketing%2520campaign%2C%2520elegant%2520newsletter%2520design%2C%2520professional%2520digital%2520content%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=5&orientation=landscape" alt="Email Marketing" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-medium text-lg mb-2">Email Marketing</h3>
+<p class="text-gray-400 text-sm">Nurture customer relationships</p>
+</div>
+</div>
+</div>
+<!-- Category Tabs -->
+<div class="flex flex-wrap justify-center gap-6 mt-8">
+<button class="category-btn flex items-center gap-2 text-primary border-b-2 border-primary px-2 py-1 whitespace-nowrap" data-category="video">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-video-line"></i>
+</div>
+<span>Video</span>
+</button>
+<button class="category-btn flex items-center gap-2 text-gray-400 hover:text-gray-200 px-2 py-1 whitespace-nowrap" data-category="brand">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-building-line"></i>
+</div>
+<span>Brand</span>
+</button>
+<button class="category-btn flex items-center gap-2 text-gray-400 hover:text-gray-200 px-2 py-1 whitespace-nowrap" data-category="growth">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-line-chart-line"></i>
+</div>
+<span>Growth</span>
+</button>
+<button class="category-btn flex items-center gap-2 text-gray-400 hover:text-gray-200 px-2 py-1 whitespace-nowrap" data-category="data">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-pie-chart-line"></i>
+</div>
+<span>Data</span>
+</button>
+<button class="category-btn flex items-center gap-2 text-gray-400 hover:text-gray-200 px-2 py-1 whitespace-nowrap" data-category="people">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-user-line"></i>
+</div>
+<span>People</span>
+</button>
+<button class="category-btn flex items-center gap-2 text-gray-400 hover:text-gray-200 px-2 py-1 whitespace-nowrap" data-category="more">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-more-line"></i>
+</div>
+<span>More</span>
+</button>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const categoryButtons = document.querySelectorAll('.category-btn');
+const gridContainer = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-3.lg\\:grid-cols-5.gap-6');
+// Add border-transparent to all buttons initially
+categoryButtons.forEach(btn => {
+if(!btn.classList.contains('border-primary')) {
+btn.classList.add('border-b-2', 'border-transparent', 'transition-all', 'duration-300');
+}
+});
+const categoryContent = {
+video: [
+{
+title: "Social Media Ads",
+description: "Engage your audience effectively",
+image: "https://readdy.ai/api/search-image?query=luxury%2520social%2520media%2520advertisement%2520for%2520premium%2520brand%2C%2520elegant%2520lifestyle%2520product%2520photography%2C%2520minimalist%2520composition%2C%2520professional%2520lighting%2C%2520dark%2520moody%2520atmosphere&width=400&height=300&seq=1&orientation=landscape"
+},
+{
+title: "Search Ads",
+description: "Reach ready-to-buy customers",
+image: "https://readdy.ai/api/search-image?query=premium%2520search%2520engine%2520marketing%2520advertisement%2C%2520modern%2520tech%2520product%2520showcase%2C%2520professional%2520commercial%2520photography%2C%2520dark%2520elegant%2520background&width=400&height=300&seq=2&orientation=landscape"
+},
+{
+title: "Display Ads",
+description: "Build brand awareness",
+image: "https://readdy.ai/api/search-image?query=high-end%2520display%2520advertising%2520campaign%2C%2520luxury%2520brand%2520showcase%2C%2520professional%2520product%2520photography%2C%2520dark%2520sophisticated%2520atmosphere&width=400&height=300&seq=3&orientation=landscape"
+},
+{
+title: "Video Ads",
+description: "Tell your brand story",
+image: "https://readdy.ai/api/search-image?query=premium%2520video%2520advertising%2520campaign%2C%2520cinematic%2520product%2520showcase%2C%2520professional%2520commercial%2520videography%2C%2520dark%2520dramatic%2520setting&width=400&height=300&seq=4&orientation=landscape"
+},
+{
+title: "Email Marketing",
+description: "Nurture customer relationships",
+image: "https://readdy.ai/api/search-image?query=premium%2520email%2520marketing%2520campaign%2C%2520elegant%2520newsletter%2520design%2C%2520professional%2520digital%2520content%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=5&orientation=landscape"
+}
+],
+brand: [
+{
+title: "Brand Strategy",
+description: "Define your brand identity",
+image: "https://readdy.ai/api/search-image?query=luxury%2520brand%2520identity%2520design%2C%2520elegant%2520logo%2520presentation%2C%2520professional%2520branding%2520materials%2C%2520dark%2520sophisticated%2520atmosphere&width=400&height=300&seq=6&orientation=landscape"
+},
+{
+title: "Visual Identity",
+description: "Create lasting impressions",
+image: "https://readdy.ai/api/search-image?query=premium%2520visual%2520identity%2520design%2C%2520elegant%2520brand%2520elements%2C%2520professional%2520design%2520presentation%2C%2520dark%2520minimal%2520setting&width=400&height=300&seq=7&orientation=landscape"
+},
+{
+title: "Brand Guidelines",
+description: "Maintain brand consistency",
+image: "https://readdy.ai/api/search-image?query=professional%2520brand%2520guidelines%2520presentation%2C%2520elegant%2520style%2520guide%2C%2520luxury%2520design%2520elements%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=8&orientation=landscape"
+},
+{
+title: "Brand Voice",
+description: "Communicate effectively",
+image: "https://readdy.ai/api/search-image?query=premium%2520brand%2520communication%2520design%2C%2520elegant%2520typography%2C%2520professional%2520content%2520presentation%2C%2520dark%2520minimal%2520background&width=400&height=300&seq=9&orientation=landscape"
+},
+{
+title: "Brand Monitoring",
+description: "Track brand performance",
+image: "https://readdy.ai/api/search-image?query=professional%2520brand%2520analytics%2520dashboard%2C%2520elegant%2520data%2520visualization%2C%2520dark%2520sophisticated%2520interface&width=400&height=300&seq=10&orientation=landscape"
+}
+],
+growth: [
+{
+title: "Market Expansion",
+description: "Enter new markets",
+image: "https://readdy.ai/api/search-image?query=professional%2520market%2520analysis%2520presentation%2C%2520global%2520business%2520growth%2C%2520elegant%2520data%2520visualization%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=11&orientation=landscape"
+},
+{
+title: "Lead Generation",
+description: "Attract qualified leads",
+image: "https://readdy.ai/api/search-image?query=premium%2520lead%2520generation%2520strategy%2C%2520professional%2520business%2520networking%2C%2520elegant%2520marketing%2520materials%2C%2520dark%2520minimal%2520setting&width=400&height=300&seq=12&orientation=landscape"
+},
+{
+title: "Customer Retention",
+description: "Build lasting relationships",
+image: "https://readdy.ai/api/search-image?query=luxury%2520customer%2520relationship%2520management%2C%2520elegant%2520client%2520presentation%2C%2520professional%2520service%2520delivery%2C%2520dark%2520sophisticated%2520atmosphere&width=400&height=300&seq=13&orientation=landscape"
+},
+{
+title: "Revenue Optimization",
+description: "Maximize profitability",
+image: "https://readdy.ai/api/search-image?query=professional%2520revenue%2520optimization%2520strategy%2C%2520elegant%2520financial%2520presentation%2C%2520dark%2520minimal%2520layout&width=400&height=300&seq=14&orientation=landscape"
+},
+{
+title: "Growth Analytics",
+description: "Track growth metrics",
+image: "https://readdy.ai/api/search-image?query=premium%2520business%2520analytics%2520dashboard%2C%2520elegant%2520growth%2520metrics%2C%2520professional%2520data%2520visualization%2C%2520dark%2520sophisticated%2520interface&width=400&height=300&seq=15&orientation=landscape"
+}
+],
+data: [
+{
+title: "Data Analytics",
+description: "Unlock data insights",
+image: "https://readdy.ai/api/search-image?query=professional%2520data%2520analytics%2520dashboard%2C%2520elegant%2520data%2520visualization%2C%2520dark%2520sophisticated%2520interface&width=400&height=300&seq=16&orientation=landscape"
+},
+{
+title: "Predictive Analysis",
+description: "Forecast trends",
+image: "https://readdy.ai/api/search-image?query=premium%2520predictive%2520analytics%2520presentation%2C%2520elegant%2520trend%2520forecasting%2C%2520professional%2520data%2520modeling%2C%2520dark%2520minimal%2520layout&width=400&height=300&seq=17&orientation=landscape"
+},
+{
+title: "Performance Metrics",
+description: "Measure success",
+image: "https://readdy.ai/api/search-image?query=luxury%2520performance%2520dashboard%2C%2520elegant%2520metrics%2520visualization%2C%2520professional%2520KPI%2520tracking%2C%2520dark%2520sophisticated%2520interface&width=400&height=300&seq=18&orientation=landscape"
+},
+{
+title: "Data Integration",
+description: "Connect data sources",
+image: "https://readdy.ai/api/search-image?query=professional%2520data%2520integration%2520system%2C%2520elegant%2520network%2520visualization%2C%2520dark%2520minimal%2520layout&width=400&height=300&seq=19&orientation=landscape"
+},
+{
+title: "Custom Reports",
+description: "Visualize insights",
+image: "https://readdy.ai/api/search-image?query=premium%2520business%2520reporting%2520dashboard%2C%2520elegant%2520data%2520presentation%2C%2520professional%2520analytics%2520interface%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=20&orientation=landscape"
+}
+],
+people: [
+{
+title: "Team Management",
+description: "Lead effectively",
+image: "https://readdy.ai/api/search-image?query=professional%2520team%2520management%2520dashboard%2C%2520elegant%2520collaboration%2520interface%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=21&orientation=landscape"
+},
+{
+title: "Skill Development",
+description: "Grow your team",
+image: "https://readdy.ai/api/search-image?query=premium%2520professional%2520development%2520program%2C%2520elegant%2520training%2520materials%2C%2520dark%2520minimal%2520setting&width=400&height=300&seq=22&orientation=landscape"
+},
+{
+title: "Performance Review",
+description: "Track progress",
+image: "https://readdy.ai/api/search-image?query=luxury%2520performance%2520review%2520system%2C%2520elegant%2520assessment%2520interface%2C%2520professional%2520evaluation%2520tools%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=23&orientation=landscape"
+},
+{
+title: "Collaboration",
+description: "Work together",
+image: "https://readdy.ai/api/search-image?query=professional%2520team%2520collaboration%2520platform%2C%2520elegant%2520workspace%2520design%2C%2520dark%2520minimal%2520interface&width=400&height=300&seq=24&orientation=landscape"
+},
+{
+title: "Resource Planning",
+description: "Optimize allocation",
+image: "https://readdy.ai/api/search-image?query=premium%2520resource%2520management%2520system%2C%2520elegant%2520planning%2520interface%2C%2520professional%2520allocation%2520tools%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=25&orientation=landscape"
+}
+],
+more: [
+{
+title: "Innovation Lab",
+description: "Explore new ideas",
+image: "https://readdy.ai/api/search-image?query=professional%2520innovation%2520laboratory%2C%2520elegant%2520research%2520facility%2C%2520dark%2520sophisticated%2520atmosphere&width=400&height=300&seq=26&orientation=landscape"
+},
+{
+title: "Knowledge Base",
+description: "Access resources",
+image: "https://readdy.ai/api/search-image?query=premium%2520knowledge%2520management%2520system%2C%2520elegant%2520library%2520interface%2C%2520dark%2520minimal%2520layout&width=400&height=300&seq=27&orientation=landscape"
+},
+{
+title: "Support Center",
+description: "Get assistance",
+image: "https://readdy.ai/api/search-image?query=luxury%2520customer%2520support%2520center%2C%2520elegant%2520help%2520desk%2520interface%2C%2520professional%2520service%2520environment%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=28&orientation=landscape"
+},
+{
+title: "Partner Network",
+description: "Build connections",
+image: "https://readdy.ai/api/search-image?query=professional%2520business%2520networking%2520platform%2C%2520elegant%2520partnership%2520presentation%2C%2520dark%2520minimal%2520setting&width=400&height=300&seq=29&orientation=landscape"
+},
+{
+title: "Research Hub",
+description: "Stay informed",
+image: "https://readdy.ai/api/search-image?query=premium%2520research%2520center%2C%2520elegant%2520information%2520hub%2C%2520professional%2520knowledge%2520center%2C%2520dark%2520sophisticated%2520layout&width=400&height=300&seq=30&orientation=landscape"
+}
+]
+};
+function updateGrid(category) {
+const content = categoryContent[category];
+if (!content) return;
+gridContainer.innerHTML = content.map(item => `
+<div class="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:transform hover:-translate-y-2 transition-all duration-300 group border border-white/10">
+<div class="aspect-[4/3] rounded-lg overflow-hidden mb-4 relative">
+<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-medium text-lg mb-2">${item.title}</h3>
+<p class="text-gray-400 text-sm">${item.description}</p>
+</div>
+`).join('');
+}
+categoryButtons.forEach(button => {
+button.addEventListener('click', function() {
+const category = this.getAttribute('data-category');
+// Update active state
+categoryButtons.forEach(btn => {
+btn.classList.remove('text-primary', 'border-primary');
+btn.classList.add('text-gray-400', 'border-transparent');
+});
+this.classList.remove('text-gray-400', 'border-transparent');
+this.classList.add('text-primary', 'border-primary');
+// Update grid content
+updateGrid(category);
+});
+});
+});
+</script>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section id="features" class="py-20 bg-gray-900">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl font-bold text-center mb-4">Powerful features <span class="gradient-text">designed for unparalleled excellence</span></h2>
+<p class="text-gray-400 text-center max-w-2xl mx-auto mb-16">Experience seamless workflow optimization with our comprehensive suite of tools</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+<div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50">
+<h3 class="text-2xl font-semibold mb-4">Campaign Analytics</h3>
+<p class="text-gray-300 mb-6">Real-time insights and performance metrics to optimize your marketing campaigns.</p>
+<div class="space-y-4">
+<div class="bg-gray-900/50 rounded-lg p-4 opacity-0 translate-x-[-50px] transition-all duration-700" data-animate="slide">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm text-gray-400">Conversion Rate</span>
+<span class="text-sm font-medium text-primary">+24.8%</span>
+</div>
+<div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 0%" data-width="75%"></div>
+</div>
+</div>
+<div class="bg-gray-900/50 rounded-lg p-4 opacity-0 translate-x-[-50px] transition-all duration-700 delay-[200ms]" data-animate="slide">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm text-gray-400">Click-through Rate</span>
+<span class="text-sm font-medium text-primary">+18.3%</span>
+</div>
+<div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 0%" data-width="65%"></div>
+</div>
+</div>
+<div class="bg-gray-900/50 rounded-lg p-4 opacity-0 translate-x-[-50px] transition-all duration-700 delay-[400ms]" data-animate="slide">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm text-gray-400">ROI</span>
+<span class="text-sm font-medium text-primary">+32.5%</span>
+</div>
+<div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 0%" data-width="85%"></div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+<script id="features-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach(el => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+const bar = el.querySelector('.bg-primary');
+if (bar) {
+const targetWidth = bar.getAttribute('data-width');
+setTimeout(() => {
+bar.style.width = targetWidth;
+bar.style.transition = 'width 1s ease-out';
+}, 300);
+}
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const featuresSection = document.querySelector('#features');
+if (featuresSection) {
+observer.observe(featuresSection);
+}
+});
+</script>
+</div>
+<div class="bg-primary/20 backdrop-blur-sm rounded-xl p-8 border border-primary/30">
+<h3 class="text-2xl font-semibold mb-4">Smart Automation</h3>
+<p class="text-gray-300 mb-6">AI-powered tools that streamline your marketing workflow and boost efficiency.</p>
+<div class="space-y-4">
+<div class="flex items-center gap-3 bg-gray-900/50 rounded-lg p-4 opacity-0 translate-y-8 transition-all duration-700" data-animate="slide">
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+<i class="ri-robot-line text-xl text-primary"></i>
+</div>
+<div class="flex-1">
+<p class="font-medium">Auto-Optimization</p>
+<p class="text-sm text-gray-400">24/7 campaign monitoring</p>
+</div>
+<div class="w-16 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="text-sm font-medium text-primary">Active</span>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-gray-900/50 rounded-lg p-4 opacity-0 translate-y-8 transition-all duration-700 delay-[200ms]" data-animate="slide">
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+<i class="ri-customer-service-line text-xl text-primary"></i>
+</div>
+<div class="flex-1">
+<p class="font-medium">Smart Bidding</p>
+<p class="text-sm text-gray-400">Real-time bid adjustments</p>
+</div>
+<div class="w-16 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="text-sm font-medium text-primary">Active</span>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-gray-900/50 rounded-lg p-4 opacity-0 translate-y-8 transition-all duration-700 delay-[400ms]" data-animate="slide">
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+<i class="ri-line-chart-line text-xl text-primary"></i>
+</div>
+<div class="flex-1">
+<p class="font-medium">A/B Testing</p>
+<p class="text-sm text-gray-400">Continuous optimization</p>
+</div>
+<div class="w-16 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="text-sm font-medium text-primary">Active</span>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+<div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50">
+<h3 class="text-2xl font-semibold mb-4">Easy API Integration</h3>
+<p class="text-gray-300 mb-6">Seamlessly connect and enhance your e-commerce operations with easy API integration. Compatible with major platforms and services.</p>
+<div class="relative h-48 rounded-lg overflow-hidden">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="grid grid-cols-3 gap-8">
+<div class="flex items-center justify-center opacity-0 transform translate-y-4 transition-all duration-500" data-delay="0">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-500/20 rounded-full">
+<i class="ri-paypal-fill text-3xl text-[#00457C]"></i>
+</div>
+</div>
+<div class="flex items-center justify-center opacity-0 transform translate-y-4 transition-all duration-500" data-delay="200">
+<div class="w-16 h-16 flex items-center justify-center bg-green-500/20 rounded-full">
+<i class="ri-shopping-bag-fill text-3xl text-[#96BF47]"></i>
+</div>
+</div>
+<div class="flex items-center justify-center opacity-0 transform translate-y-4 transition-all duration-500" data-delay="400">
+<div class="w-16 h-16 flex items-center justify-center bg-orange-500/20 rounded-full">
+<i class="ri-amazon-fill text-3xl text-[#FF9900]"></i>
+</div>
+</div>
+<div class="flex items-center justify-center opacity-0 transform translate-y-4 transition-all duration-500" data-delay="600">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-500/20 rounded-full">
+<i class="ri-stripe-fill text-3xl text-[#6772E5]"></i>
+</div>
+</div>
+<div class="flex items-center justify-center opacity-0 transform translate-y-4 transition-all duration-500" data-delay="800">
+<div class="w-16 h-16 flex items-center justify-center bg-red-500/20 rounded-full">
+<i class="ri-google-fill text-3xl text-[#DB4437]"></i>
+</div>
+</div>
+<div class="flex items-center justify-center opacity-0 transform translate-y-4 transition-all duration-500" data-delay="1000">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-500/20 rounded-full">
+<i class="ri-facebook-fill text-3xl text-[#1877F2]"></i>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const icons = entry.target.querySelectorAll('[data-delay]');
+icons.forEach(icon => {
+const delay = parseInt(icon.getAttribute('data-delay'));
+setTimeout(() => {
+icon.style.opacity = '1';
+icon.style.transform = 'translateY(0)';
+}, delay);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const iconGrid = document.querySelector('.grid.grid-cols-3.gap-8');
+if (iconGrid) {
+observer.observe(iconGrid);
+}
+});
+</script>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+</section>
+</div>
+</section>
+<!-- Comparison Section -->
+<section class="py-20 bg-gray-900/50">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl font-bold text-center mb-4">Your current spend <span class="gradient-text">leaks more money</span> than realized</h2>
+<p class="text-gray-300 text-center max-w-2xl mx-auto mb-16">See how PeakFlow helps you identify and fix inefficiencies in your marketing campaigns</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<div class="before-card rounded-lg p-8 border border-primary/20">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-semibold text-primary">Before PeakFlow</h3>
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full">
+<i class="ri-emotion-sad-line text-primary text-xl"></i>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4 opacity-0 transform translate-x-[-50px] transition-all duration-700" data-animate="slide">
+<span class="text-gray-300">Ad Spend Efficiency</span>
+<div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 0%" data-width="45%"></div>
+</div>
+<span class="text-primary font-medium text-right">45%</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4 opacity-0 transform translate-x-[-50px] transition-all duration-700" data-animate="slide">
+<span class="text-gray-300">Campaign ROI</span>
+<div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 0%" data-width="38%"></div>
+</div>
+<span class="text-primary font-medium text-right">2.1x</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4 opacity-0 transform translate-x-[-50px] transition-all duration-700" data-animate="slide">
+<span class="text-gray-300">Conversion Rate</span>
+<div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 0%" data-width="30%"></div>
+</div>
+<span class="text-primary font-medium text-right">3.2%</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4 opacity-0 transform translate-x-[-50px] transition-all duration-700" data-animate="slide">
+<span class="text-gray-300">Customer Acquisition Cost</span>
+<div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 0%" data-width="25%"></div>
+</div>
+<span class="text-primary font-medium text-right">$142</span>
+</div>
+</div>
+<button class="w-full bg-primary/20 text-primary px-4 py-3 !rounded-button hover:bg-primary/30 transition whitespace-nowrap">Learn More</button>
+</div>
+<div class="after-card rounded-lg p-8 border border-secondary/20">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-semibold text-secondary">After PeakFlow</h3>
+<div class="w-10 h-10 flex items-center justify-center bg-secondary/10 rounded-full">
+<i class="ri-emotion-happy-line text-secondary text-xl"></i>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4 opacity-0 transform translate-x-[-50px] transition-all duration-700" data-animate="slide">
+<span class="text-gray-300">Ad Spend Efficiency</span>
+<div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 0%" data-width="85%"></div>
+</div>
+<span class="text-secondary font-medium text-right">85%</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4 opacity-0 transform translate-x-[-50px] transition-all duration-700" data-animate="slide">
+<span class="text-gray-300">Campaign ROI</span>
+<div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 0%" data-width="78%"></div>
+</div>
+<span class="text-secondary font-medium text-right">4.7x</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4 opacity-0 transform translate-x-[-50px] transition-all duration-700" data-animate="slide">
+<span class="text-gray-300">Conversion Rate</span>
+<div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 0%" data-width="65%"></div>
+</div>
+<span class="text-secondary font-medium text-right">7.8%</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4 opacity-0 transform translate-x-[-50px] transition-all duration-700" data-animate="slide">
+<span class="text-gray-300">Customer Acquisition Cost</span>
+<div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 0%" data-width="70%"></div>
+</div>
+<span class="text-secondary font-medium text-right">$68</span>
+</div>
+</div>
+<button class="w-full bg-secondary/20 text-secondary px-4 py-3 !rounded-button hover:bg-secondary/30 transition whitespace-nowrap">Learn More</button>
+</div>
+</div>
+<script id="comparison-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+const bar = el.querySelector('.bg-primary, .bg-secondary');
+if (bar) {
+const targetWidth = bar.getAttribute('data-width');
+setTimeout(() => {
+bar.style.width = targetWidth;
+bar.style.transition = 'width 1s ease-out';
+}, 300);
+}
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const comparisonCards = document.querySelectorAll('.before-card, .after-card');
+comparisonCards.forEach(card => {
+observer.observe(card);
+});
+});
+</script>
+</div>
+</section>
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-20 bg-gray-900 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+<div class="container mx-auto px-6 relative">
+<div class="flex flex-col lg:flex-row items-start gap-16">
+<div class="lg:w-1/3 lg:sticky lg:top-24">
+<h2 class="text-4xl font-bold mb-6">The Journey to <br><span class="gradient-text">Marketing Excellence</span></h2>
+<p class="text-gray-300 mb-8">Experience our revolutionary approach to transform your marketing performance through four key phases.</p>
+<div class="hidden lg:flex flex-col gap-4">
+<button class="phase-btn w-full text-left px-6 py-4 bg-primary/10 border-l-4 border-primary rounded-r-lg text-primary font-medium" data-phase="1">Phase 1: Analysis</button>
+<button class="phase-btn w-full text-left px-6 py-4 bg-gray-800/30 border-l-4 border-transparent rounded-r-lg text-gray-400 hover:text-white transition-colors" data-phase="2">Phase 2: Strategy</button>
+<button class="phase-btn w-full text-left px-6 py-4 bg-gray-800/30 border-l-4 border-transparent rounded-r-lg text-gray-400 hover:text-white transition-colors" data-phase="3">Phase 3: Action</button>
+<button class="phase-btn w-full text-left px-6 py-4 bg-gray-800/30 border-l-4 border-transparent rounded-r-lg text-gray-400 hover:text-white transition-colors" data-phase="4">Phase 4: Growth</button>
+</div>
+<template id="phase-1-template">
+<div class="phase-content" id="phase-1">
+<div class="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 mb-8">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-search-2-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Deep Data Analysis</h4>
+<p class="text-gray-400">Unlocking insights from your marketing data</p>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-radar-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Campaign Performance Scanning</h4>
+<p class="text-gray-400">Advanced AI algorithms analyze your existing campaigns</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-bubble-chart-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Pattern Recognition</h4>
+<p class="text-gray-400">Identify trends and opportunities in your data</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-funds-box-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">ROI Assessment</h4>
+<p class="text-gray-400">Evaluate current return on marketing investment</p>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-timer-line text-primary"></i>
+</div>
+<h4 class="font-medium">Time to Insights</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2">24-48h</p>
+<p class="text-gray-400">Average analysis completion time</p>
+</div>
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-database-2-line text-primary"></i>
+</div>
+<h4 class="font-medium">Data Points</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2">500K+</p>
+<p class="text-gray-400">Analyzed per campaign</p>
+</div>
+</div>
+</div>
+</template>
+<template id="phase-2-template">
+<div class="phase-content" id="phase-2">
+<div class="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 mb-8">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-strategy-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Strategic Planning</h4>
+<p class="text-gray-400">Developing data-driven marketing strategies</p>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-focus-2-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Target Audience Refinement</h4>
+<p class="text-gray-400">Precise audience segmentation based on data insights</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-money-dollar-circle-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Budget Allocation</h4>
+<p class="text-gray-400">Optimal distribution of marketing resources</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-calendar-check-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Campaign Timeline</h4>
+<p class="text-gray-400">Strategic scheduling for maximum impact</p>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-target-line text-primary"></i>
+</div>
+<h4 class="font-medium">Strategy Success Rate</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2 stat-number" data-value="92%" data-animated="false">92%</p>
+<p class="text-gray-400">Client satisfaction rate</p>
+</div>
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-line-chart-line text-primary"></i>
+</div>
+<h4 class="font-medium">Performance Boost</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2 stat-number" data-value="3.5x" data-animated="false">3.5x</p>
+<p class="text-gray-400">Average ROI improvement</p>
+</div>
+</div>
+</div>
+</template>
+<template id="phase-3-template">
+<div class="phase-content" id="phase-3">
+<div class="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 mb-8">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-rocket-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Implementation</h4>
+<p class="text-gray-400">Executing optimized marketing campaigns</p>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-settings-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Automated Deployment</h4>
+<p class="text-gray-400">AI-powered campaign execution across channels</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-test-tube-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Real-time Testing</h4>
+<p class="text-gray-400">Continuous A/B testing and optimization</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-shield-check-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Performance Monitoring</h4>
+<p class="text-gray-400">24/7 campaign performance tracking</p>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-speed-line text-primary"></i>
+</div>
+<h4 class="font-medium">Launch Speed</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2 stat-number" data-value="4x" data-animated="false">4x</p>
+<p class="text-gray-400">Faster campaign deployment</p>
+</div>
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-error-warning-line text-primary"></i>
+</div>
+<h4 class="font-medium">Error Reduction</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2 stat-number" data-value="98%" data-animated="false">98%</p>
+<p class="text-gray-400">Lower error rate</p>
+</div>
+</div>
+</div>
+</template>
+<template id="phase-4-template">
+<div class="phase-content" id="phase-4">
+<div class="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 mb-8">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-line-chart-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Sustainable Growth</h4>
+<p class="text-gray-400">Scaling success through continuous optimization</p>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-funds-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Revenue Expansion</h4>
+<p class="text-gray-400">Systematic approach to revenue growth</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-user-star-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Customer Retention</h4>
+<p class="text-gray-400">Enhanced customer lifetime value</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-global-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Market Expansion</h4>
+<p class="text-gray-400">Strategic entry into new markets</p>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-arrow-up-circle-line text-primary"></i>
+</div>
+<h4 class="font-medium">Growth Rate</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2 stat-number" data-value="185%" data-animated="false">0%</p>
+<p class="text-gray-400">Average annual growth</p>
+</div>
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-user-add-line text-primary"></i>
+</div>
+<h4 class="font-medium">Customer Base</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2 stat-number" data-value="2.8x" data-animated="false">0x</p>
+<p class="text-gray-400">Expansion rate</p>
+</div>
+</div>
+</div>
+</template>
+</div>
+<div class="lg:w-2/3">
+<div class="phase-content" id="phase-1">
+<div class="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 mb-8">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-search-2-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Deep Data Analysis</h4>
+<p class="text-gray-400">Unlocking insights from your marketing data</p>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-radar-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Campaign Performance Scanning</h4>
+<p class="text-gray-400">Advanced AI algorithms analyze your existing campaigns</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-bubble-chart-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">Pattern Recognition</h4>
+<p class="text-gray-400">Identify trends and opportunities in your data</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/5 rounded-xl">
+<i class="ri-funds-box-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-2">ROI Assessment</h4>
+<p class="text-gray-400">Evaluate current return on marketing investment</p>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-timer-line text-primary"></i>
+</div>
+<h4 class="font-medium">Time to Insights</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2 stat-number" data-value="24-48h" data-animated="false">24-48h</p>
+<p class="text-gray-400">Average analysis completion time</p>
+</div>
+<div class="bg-gray-800/20 rounded-xl p-6 border border-gray-700/50">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<i class="ri-database-2-line text-primary"></i>
+</div>
+<h4 class="font-medium">Data Points</h4>
+</div>
+<p class="text-4xl font-bold text-primary mb-2 stat-number" data-value="500K+" data-animated="false">500K+</p>
+<p class="text-gray-400">Analyzed per campaign</p>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+<script id="how-it-works-script">
+document.addEventListener('DOMContentLoaded', function() {
+const phaseBtns = document.querySelectorAll('.phase-btn');
+const contentContainer = document.querySelector('.lg\\:w-2\\/3');
+const phase1Content = document.getElementById('phase-1');
+const animatedPhases = new Set();
+// Function to animate numbers
+function animateNumbers(container) {
+const statNumbers = container.querySelectorAll('.stat-number[data-animated="false"]');
+statNumbers.forEach(stat => {
+const finalValue = stat.getAttribute('data-value');
+stat.setAttribute('data-animated', 'true');
+stat.textContent = '0';
+// Handle numeric values with K+ suffix
+if (finalValue.includes('K+')) {
+const numericValue = parseInt(finalValue.replace('K+', ''));
+let startValue = 0;
+const duration = 2000;
+const increment = numericValue / (duration / 16);
+const updateNumber = () => {
+startValue += increment;
+if (startValue < numericValue) {
+stat.textContent = Math.floor(startValue) + 'K+';
+requestAnimationFrame(updateNumber);
+} else {
+stat.textContent = finalValue;
+}
+};
+requestAnimationFrame(updateNumber);
+}
+// Handle time ranges like 24-48h
+else if (finalValue.includes('-') && finalValue.includes('h')) {
+const parts = finalValue.split('-');
+const start = parseInt(parts[0]);
+const end = parseInt(parts[1].replace('h', ''));
+let currentStart = 0;
+let currentEnd = 0;
+const duration = 2000;
+const startIncrement = start / (duration / 16);
+const endIncrement = end / (duration / 16);
+const updateNumber = () => {
+currentStart += startIncrement;
+currentEnd += endIncrement;
+if (currentStart < start || currentEnd < end) {
+stat.textContent = Math.floor(currentStart) + '-' + Math.floor(currentEnd) + 'h';
+requestAnimationFrame(updateNumber);
+} else {
+stat.textContent = finalValue;
+}
+};
+requestAnimationFrame(updateNumber);
+}
+// Handle values with x suffix (like 2.8x)
+else if (finalValue.includes('x')) {
+const numericValue = parseFloat(finalValue.replace('x', ''));
+let startValue = 0;
+const duration = 2000;
+const increment = numericValue / (duration / 16);
+const updateNumber = () => {
+startValue += increment;
+if (startValue < numericValue) {
+stat.textContent = startValue.toFixed(1) + 'x';
+requestAnimationFrame(updateNumber);
+} else {
+stat.textContent = finalValue;
+}
+};
+requestAnimationFrame(updateNumber);
+}
+// Handle percentage values
+else if (finalValue.includes('%')) {
+const numericValue = parseInt(finalValue.replace('%', ''));
+let startValue = 0;
+const duration = 2000;
+const increment = numericValue / (duration / 16);
+const updateNumber = () => {
+startValue += increment;
+if (startValue < numericValue) {
+stat.textContent = Math.floor(startValue) + '%';
+requestAnimationFrame(updateNumber);
+} else {
+stat.textContent = finalValue;
+}
+};
+requestAnimationFrame(updateNumber);
+}
+});
+}
+function showPhaseContent(phaseNumber) {
+const template = document.getElementById(`phase-${phaseNumber}-template`);
+if (phaseNumber === 1) {
+contentContainer.innerHTML = '';
+contentContainer.appendChild(phase1Content);
+// Only animate if not already animated
+if (!animatedPhases.has(phaseNumber)) {
+animateNumbers(phase1Content);
+animatedPhases.add(phaseNumber);
+}
+} else if (template) {
+contentContainer.innerHTML = '';
+const newContent = template.content.cloneNode(true);
+contentContainer.appendChild(newContent);
+// Only animate if not already animated
+if (!animatedPhases.has(phaseNumber)) {
+animateNumbers(contentContainer);
+animatedPhases.add(phaseNumber);
+}
+}
+}
+phaseBtns.forEach(btn => {
+btn.addEventListener('click', function() {
+const phaseNumber = this.getAttribute('data-phase');
+phaseBtns.forEach(b => {
+b.classList.remove('bg-primary/10', 'border-primary', 'text-primary');
+b.classList.add('bg-gray-800/30', 'border-transparent', 'text-gray-400');
+});
+this.classList.remove('bg-gray-800/30', 'border-transparent', 'text-gray-400');
+this.classList.add('bg-primary/10', 'border-primary', 'text-primary');
+showPhaseContent(phaseNumber);
+});
+});
+// Animate phase 1 on scroll into view
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting && !animatedPhases.has(1)) {
+animateNumbers(phase1Content);
+animatedPhases.add(1);
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+observer.observe(document.getElementById('how-it-works'));
+});
+</script>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-20 bg-gray-900/50">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl font-bold text-center mb-16">Trusted by <span class="gradient-text">Industry Leaders</span></h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+<div class="bg-gray-800/30 rounded-xl p-6 border border-gray-700 card-hover transition duration-300">
+<div class="flex items-start gap-4 mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%2520marketing%2520director%2520headshot%2C%2520confident%2520expression%2C%2520business%2520attire%2C%2520neutral%2520background%2C%2520professional%2520lighting%2C%2520clean%2520minimal%2520composition&width=80&height=80&seq=13&orientation=squarish" alt="Michael Thompson" class="w-16 h-16 rounded-full object-cover object-top">
+<div>
+<h4 class="font-semibold">Michael Thompson</h4>
+<p class="text-sm text-gray-400">Marketing Director</p>
+<p class="text-sm text-gray-400">TechVision Inc.</p>
+</div>
+</div>
+<p class="text-gray-300">"PeakFlow transformed our marketing operations. We've seen a 47% increase in ROI while maintaining the same ad budget. The AI-powered insights have been game-changing for our team."</p>
+</div>
+<div class="bg-gray-800/30 rounded-xl p-6 border border-gray-700 card-hover transition duration-300">
+<div class="flex items-start gap-4 mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%2520female%2520CMO%2520headshot%2C%2520confident%2520expression%2C%2520business%2520attire%2C%2520neutral%2520background%2C%2520professional%2520lighting%2C%2520clean%2520minimal%2520composition&width=80&height=80&seq=14&orientation=squarish" alt="Sarah Reynolds" class="w-16 h-16 rounded-full object-cover object-top">
+<div>
+<h4 class="font-semibold">Sarah Reynolds</h4>
+<p class="text-sm text-gray-400">CMO</p>
+<p class="text-sm text-gray-400">GrowthWave</p>
+</div>
+</div>
+<p class="text-gray-300">"The insights provided by PeakFlow allowed us to identify wasted ad spend we didn't even know existed. We've been able to reallocate resources and drive significantly better results."</p>
+</div>
+<div class="bg-gray-800/30 rounded-xl p-6 border border-gray-700 card-hover transition duration-300">
+<div class="flex items-start gap-4 mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%2520digital%2520marketing%2520manager%2520headshot%2C%2520confident%2520expression%2C%2520business%2520casual%2C%2520neutral%2520background%2C%2520professional%2520lighting%2C%2520clean%2520minimal%2520composition&width=80&height=80&seq=15&orientation=squarish" alt="David Chen" class="w-16 h-16 rounded-full object-cover object-top">
+<div>
+<h4 class="font-semibold">David Chen</h4>
+<p class="text-sm text-gray-400">Digital Marketing Manager</p>
+<p class="text-sm text-gray-400">Elevate Brands</p>
+</div>
+</div>
+<p class="text-gray-300">"As a mid-sized company, every marketing dollar counts. PeakFlow has helped us compete with larger competitors by making our campaigns smarter and more efficient."</p>
+</div>
+</div>
+<div class="text-center mt-12">
+<button class="border border-gray-600 text-gray-300 px-6 py-2 !rounded-button hover:bg-gray-800 transition whitespace-nowrap">View All Testimonials</button>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section id="faq" class="py-20 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900/95 to-primary/10"></div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 items-start">
+<div>
+<h2 class="text-4xl font-bold mb-4">Have <br><span class="gradient-text">Questions?</span></h2>
+<p class="text-gray-400">Find answers to commonly asked questions about our platform</p>
+</div>
+<div class="space-y-6">
+<div class="border-b-2 border-gray-700/50 pb-6 opacity-0 translate-x-[-50px] transition-all duration-700" data-animate="slide" style="transition-delay: 0ms">
+<div class="border-b-2 border-gray-700/50 pb-6 opacity-0 translate-x-[-50px] transition-all duration-700" data-animate="slide" style="transition-delay: 200ms">
+<button class="accordion-btn w-full flex justify-between items-center py-4 text-left group" id="accordion-1">
+<span class="font-medium text-lg group-hover:text-primary transition-colors">How does PeakFlow optimize my marketing campaigns?</span>
+<div class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-800/50 text-primary accordion-icon group-hover:bg-primary/10 transition-colors">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="accordion-content">
+<p class="text-gray-400 pt-4">PeakFlow uses advanced AI algorithms to analyze your campaign data across multiple channels. It identifies inefficiencies, wasted spend, and opportunities for improvement. The platform then provides actionable recommendations and can automatically implement optimizations to improve your ROI without increasing your budget.</p>
+</div>
+</div>
+<div class="border-b-2 border-gray-700/50 pb-6 opacity-0 translate-x-[-50px] transition-all duration-700" data-animate="slide" style="transition-delay: 200ms">
+<button class="accordion-btn w-full flex justify-between items-center py-4 text-left group" id="accordion-2">
+<span class="font-medium text-lg group-hover:text-primary transition-colors">What marketing platforms does PeakFlow integrate with?</span>
+<div class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-800/50 text-primary accordion-icon group-hover:bg-primary/10 transition-colors">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="accordion-content">
+<p class="text-gray-400 pt-4">PeakFlow integrates with all major marketing platforms including Google Ads, Facebook Ads, Instagram, LinkedIn, Twitter, TikTok, Pinterest, Amazon Advertising, and more. We also offer custom API integrations for enterprise clients with specialized platforms.</p>
+</div>
+</div>
+<div class="border-b-2 border-gray-700/50 pb-6 opacity-0 translate-x-[-50px] transition-all duration-700" data-animate="slide" style="transition-delay: 200ms">
+<button class="accordion-btn w-full flex justify-between items-center py-4 text-left group" id="accordion-3">
+<span class="font-medium text-lg group-hover:text-primary transition-colors">How long does it take to see results?</span>
+<div class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-800/50 text-primary accordion-icon group-hover:bg-primary/10 transition-colors">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="accordion-content">
+<p class="text-gray-400 pt-4">Most clients begin to see measurable improvements within the first 2-4 weeks of implementation. However, the full impact of optimization typically becomes apparent after 60-90 days as the AI continues to learn and refine its strategies based on your specific business and audience.</p>
+</div>
+</div>
+<div class="border-b-2 border-gray-700/50 pb-6 opacity-0 translate-x-[-50px] transition-all duration-700" data-animate="slide" style="transition-delay: 200ms">
+<button class="accordion-btn w-full flex justify-between items-center py-4 text-left group" id="accordion-4">
+<span class="font-medium text-lg group-hover:text-primary transition-colors">Is there a contract or commitment?</span>
+<div class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-800/50 text-primary accordion-icon group-hover:bg-primary/10 transition-colors">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="accordion-content">
+<p class="text-gray-400 pt-4">PeakFlow offers flexible month-to-month plans with no long-term contracts required. However, we do offer discounts for annual commitments. You can upgrade, downgrade, or cancel your subscription at any time, though we recommend at least a 3-month period to fully experience the platform's optimization capabilities.</p>
+</div>
+</div>
+<div class="border-b-2 border-gray-700/50 pb-6 opacity-0 translate-x-[-50px] transition-all duration-700" data-animate="slide" style="transition-delay: 200ms">
+<button class="accordion-btn w-full flex justify-between items-center py-4 text-left group" id="accordion-5">
+<span class="font-medium text-lg group-hover:text-primary transition-colors">Do you offer custom solutions?</span>
+<div class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-800/50 text-primary accordion-icon group-hover:bg-primary/10 transition-colors">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="accordion-content">
+<p class="text-gray-400 pt-4">Yes, our Enterprise plan includes custom solutions tailored to your specific business needs. This includes custom reporting dashboards, specialized integrations, dedicated account management, and personalized optimization strategies designed for your unique marketing ecosystem and business goals.</p>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="py-20 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-3xl font-bold mb-2">PeakFlow Insights: <span class="gradient-text">Stay Ahead</span></h2>
+<p class="text-gray-300 mb-8">Subscribe to our newsletter for the latest marketing optimization strategies and industry insights</p>
+<div class="flex flex-col md:flex-row gap-4 mb-4">
+<input type="email" placeholder="Enter your email address" class="flex-1 bg-gray-800 border-none text-white px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary/50">
+<button class="bg-primary text-white px-6 py-3 !rounded-button hover:bg-opacity-90 transition whitespace-nowrap">Subscribe</button>
+</div>
+<p class="text-gray-500 text-sm">We respect your privacy. Unsubscribe at any time.</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 border-t border-gray-800 py-12">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">PeakFlow</a>
+<p class="text-gray-400 mb-4">Maximize your marketing ROI with AI-powered optimization.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-primary">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-twitter-x-line"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-linkedin-line"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-facebook-line"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-instagram-line"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Company</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-primary">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Careers</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Press</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Partners</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Resources</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-primary">Documentation</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Help Center</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Case Studies</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Webinars</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">API Reference</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Legal</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-primary">Terms of Service</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Privacy Policy</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Cookie Policy</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">GDPR Compliance</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Security</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 PeakFlow. All rights reserved.</p>
+<div class="flex items-center space-x-4">
+<div class="w-8 h-5 flex items-center justify-center">
+<i class="ri-visa-fill text-gray-400"></i>
+</div>
+<div class="w-8 h-5 flex items-center justify-center">
+<i class="ri-mastercard-fill text-gray-400"></i>
+</div>
+<div class="w-8 h-5 flex items-center justify-center">
+<i class="ri-paypal-fill text-gray-400"></i>
+</div>
+<div class="w-8 h-5 flex items-center justify-center">
+<i class="ri-apple-fill text-gray-400"></i>
+</div>
+</div>
+</div>
+<script id="faq-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const elements = entry.target.querySelectorAll('[data-animate="slide"]');
+elements.forEach((el, index) => {
+setTimeout(() => {
+el.style.opacity = '1';
+el.style.transform = 'translateX(0)';
+}, index * 200);
+});
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+const faqSection = document.querySelector('#faq');
+if (faqSection) {
+observer.observe(faqSection);
+}
+});
+</script>
+</div>
+</footer>
+<script id="accordion-script">
+document.addEventListener('DOMContentLoaded', function() {
+const accordionBtns = document.querySelectorAll('.accordion-btn');
+accordionBtns.forEach(btn => {
+btn.addEventListener('click', function() {
+const content = this.nextElementSibling;
+const icon = this.querySelector('.accordion-icon i');
+if (content.classList.contains('active')) {
+content.classList.remove('active');
+icon.classList.remove('ri-subtract-line');
+icon.classList.add('ri-add-line');
+} else {
+content.classList.add('active');
+icon.classList.remove('ri-add-line');
+icon.classList.add('ri-subtract-line');
+}
+});
+});
+});
+</script>
+</body>
+</html>
